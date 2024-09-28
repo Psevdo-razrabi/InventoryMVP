@@ -1,4 +1,3 @@
-using System;
 using CustomObserverable;
 using UnityEngine;
 
