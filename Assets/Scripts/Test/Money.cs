@@ -1,8 +1,6 @@
-﻿using System;
-using UI;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace Test
+namespace Inventory
 {
     public class Money : MonoBehaviour
     {

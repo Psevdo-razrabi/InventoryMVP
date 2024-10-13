@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.Serialization;
 
-namespace UI.V
+namespace Inventory
 {
     public class InventoryView : MonoBehaviour
     {

@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using UI.Custom;
-using UI.M;
-using UI.P;
-using UI.V;
+using Inventory;
 
-namespace Builder
+namespace Helpers
 {
     public class BuildInventory
     {

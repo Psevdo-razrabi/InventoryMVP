@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
-using CustomObserverable;
+using Helpers;
 using R3;
-using UI.Custom;
 
-namespace UI.M
+namespace Inventory
 {
     public class InventoryModel
     {

@@ -1,7 +1,6 @@
 ﻿using System;
-using Object = UnityEngine.Object;
 
-namespace UI.Custom
+namespace Helpers
 {
     public class Preconditions
     {

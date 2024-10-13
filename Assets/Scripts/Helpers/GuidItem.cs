@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CustomObserverable
+namespace Helpers
 {
     public struct GuidItem : IEquatable<GuidItem>
     {

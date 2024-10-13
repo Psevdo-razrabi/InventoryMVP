@@ -1,11 +1,8 @@
 ﻿using System;
-using CustomObserverable;
+using Helpers;
 using R3;
-using UI.Custom;
-using UI.M;
-using UI.V;
 
-namespace UI.P
+namespace Inventory
 {
     public class InventoryPresenter : IDisposable
     {

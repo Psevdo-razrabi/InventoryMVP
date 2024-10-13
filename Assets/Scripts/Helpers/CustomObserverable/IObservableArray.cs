@@ -1,6 +1,6 @@
 ﻿using R3;
 
-namespace CustomObserverable
+namespace Helpers
 {
     public interface IObservableArray<T>
     {

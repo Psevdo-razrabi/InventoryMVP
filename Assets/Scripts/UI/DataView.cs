@@ -1,6 +1,6 @@
 ﻿using R3;
 
-namespace UI
+namespace Inventory
 {
     public class DataView
     {
