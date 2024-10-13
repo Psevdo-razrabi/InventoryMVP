@@ -1,17 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using CustomObserverable;
+using R3;
 using UI.Custom;
-using UniRx;
 
 namespace UI.M
 {
     public class InventoryModel
     {
-        public readonly ObservableArray<Item> Items;
         private int _capasity;
-
-        private readonly Subject<Item[]> _onModelChange = new ();
+        private readonly Subject<Item[]> _onModelChange = new();
+        public Observable<Item[]> OnModelChange => _onModelChange;
+        public readonly ObservableArray<Item> Items;
+        public readonly DataView DataView;
         
         public InventoryModel(IEnumerable<ItemDescription> items, int capacity)
         {
@@ -24,6 +24,7 @@ namespace UI.M
             }
 
             Subscribe();
+            DataView = new DataView(new ReactiveProperty<int>(), _capasity);
         }
 
         private void Subscribe()

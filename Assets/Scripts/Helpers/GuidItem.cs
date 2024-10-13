@@ -17,6 +17,16 @@ namespace CustomObserverable
             _third = 0;
             _fourth = 0;
         }
+
+        public GuidItem(uint first, uint second, uint third, uint fourth)
+        {
+            _first = first;
+            _second = second;
+            _third = third;
+            _fourth = fourth;
+        }
+
+        public static GuidItem IsEmpty() => new GuidItem(0, 0, 0, 0);
         
         public bool Equals(GuidItem other)
         {

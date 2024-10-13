@@ -12,7 +12,6 @@ namespace UI.Custom
 
         public static T CheckNotNull<T>(T reference, string message)
         {
-            if (reference is Object obj && obj ? obj : null) throw new ArgumentException(message);
             if (reference == null) throw new AggregateException(message);
             return reference;
         }
