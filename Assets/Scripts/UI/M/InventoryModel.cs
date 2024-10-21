@@ -1,34 +1,43 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Helpers;
 using R3;
 
 namespace Inventory
 {
-    public class InventoryModel
+    public class InventoryModel : IDisposable
     {
+        private readonly IEnumerable<ItemDescription> _items;
         private int _capasity;
         private readonly Subject<Item[]> _onModelChange = new();
         public Observable<Item[]> OnModelChange => _onModelChange;
         public readonly ObservableArray<Item> Items;
-        public readonly DataView DataView;
+        public DataView DataView;
         
         public InventoryModel(IEnumerable<ItemDescription> items, int capacity)
         {
             Preconditions.CheckValidateData(capacity);
             Items = new ObservableArray<Item>(capacity);
+            _items = items;
+            _capasity = capacity;
+            
+            DataView = new DataView(new ReactiveProperty<int>(), _capasity, Items);
+        }
 
-            foreach (var item in items)
+        public void Initialize()
+        {
+            Subscribe();
+
+            foreach (var item in _items)
             {
                 Items.TryAdd(Factory.CreateItem(item, 1));
             }
-
-            Subscribe();
-            DataView = new DataView(new ReactiveProperty<int>(), _capasity);
         }
 
         private void Subscribe()
         {
-            Items.ValueChangeInArray.Subscribe(items => _onModelChange.OnNext(items));
+            Items.ValueChangeInArray
+                .Subscribe(items => _onModelChange.OnNext(items));
         }
 
         public Item Get(int index) => Items[index];
@@ -43,6 +52,12 @@ namespace Inventory
             Items[indexTwo].SetQuantity(totalQuantity);
             Remove(Items[indexOne]);
             return totalQuantity;
+        }
+
+        public void Dispose()
+        {
+            _onModelChange?.Dispose();
+            Items?.Dispose();
         }
     }
 }

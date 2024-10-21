@@ -11,11 +11,11 @@ namespace Helpers
 
         public GuidItem(Guid guid) : this()
         {
-            ConvertGuidToFields(guid);
             _first = 0;
             _second = 0;
             _third = 0;
             _fourth = 0;
+            ConvertGuidToFields(guid);
         }
 
         public GuidItem(uint first, uint second, uint third, uint fourth)

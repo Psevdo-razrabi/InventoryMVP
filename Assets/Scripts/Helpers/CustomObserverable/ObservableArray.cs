@@ -5,7 +5,7 @@ using R3;
 
 namespace Helpers
 {
-    public class ObservableArray<T> : IObservableArray<T>
+    public class ObservableArray<T> : IObservableArray<T>, IDisposable
     {
         private T[] _elements;
         private Subject<T[]> _valueChangeInArray { get; } = new();
@@ -22,6 +22,7 @@ namespace Helpers
         public void Swap(int indexOne, int indexTwo)
         {
             (_elements[indexOne], _elements[indexTwo]) = (_elements[indexTwo], _elements[indexOne]);
+            OnNext();
         }
 
         public void Clear()
@@ -79,5 +80,10 @@ namespace Helpers
         private void OnNext() => _valueChangeInArray.OnNext(_elements);
 
         private bool HasFreeSpase() => _elements.Any(element => element == null);
+
+        public void Dispose()
+        {
+            _valueChangeInArray?.Dispose();
+        }
     }
 }

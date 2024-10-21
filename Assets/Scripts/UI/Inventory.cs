@@ -6,9 +6,9 @@ namespace Inventory
 {
     public class Inventory : MonoBehaviour
     {
-        [SerializeField] private InventoryView _inventoryView;
         [SerializeField] private int capacity;
         [SerializeField] private List<ItemDescription> startingItem;
+        [SerializeField] private InventoryView _inventoryView;
         private BuildInventory _build;
         
         public InventoryStorage InventoryStorage { get; private set; }
@@ -22,6 +22,12 @@ namespace Inventory
                 .Build();
             
             InventoryStorage.InventoryPresenter.Initialize();
+            InventoryStorage.InventoryModel.Initialize();
+        }
+
+        private void OnDestroy()
+        {
+            InventoryStorage.InventoryPresenter.Dispose();
         }
     }
 }
